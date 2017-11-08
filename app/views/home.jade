@@ -1,12 +1,24 @@
 extends layout
 
+
 block content
+
+	link(href='/css/prettyjson.css', rel='stylesheet')
 	if user !== null
 		h1 Hello, #{user.firstName}
-		a(href="/profile") Profile
+		div!=userHtml
 		br
 		a(href="/logout") Logout
 	else
 		h1 Welcome
 		br
-		a(href="/login") Login
+		b Choose your protocol
+		ul
+			li 
+				a(href="/loginP2") Log with P2
+			li 
+				a(href="/loginP3") Log with P3
+			li 
+				a(href="/loginSAML1") Log with SAML v1
+			li 
+				a(href="/loginSAML2") Log with SAML v2

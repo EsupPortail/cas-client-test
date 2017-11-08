@@ -1,4 +1,5 @@
 /node_modules
 /bower_components
-/public
+/public/bower_components
 /.idea
+/package-lock.json

@@ -1,4 +1,5 @@
 const SamlStrategy = require('passport-saml').Strategy;
+const CasStrategy = require('passport-cas').Strategy;
 
 module.exports = function (passport, config) {
 
@@ -10,23 +11,31 @@ module.exports = function (passport, config) {
     done(null, user);
   });
 
-  passport.use(new SamlStrategy(
-    {
-      path: config.passport.saml.path,
-      entryPoint: config.passport.saml.entryPoint,
-      issuer: config.passport.saml.issuer,
-      cert: config.passport.saml.cert
-    },
+  passport.use(config.passport.saml2.confName, new SamlStrategy(
+    config.passport.saml2,
     function (profile, done) {
-      return done(null,
-        {
-          id: profile.uid,
-          email: profile.email,
-          displayName: profile.cn,
-          firstName: profile.givenName,
-          lastName: profile.sn
-        });
+      return done(null, profile);
     })
   );
 
+  passport.use(config.passport.saml1.confName, new CasStrategy(
+    config.passport.saml1,
+    function (profile, done) {
+      return done(null, {login: profile});
+    })
+  );
+
+  passport.use(config.passport.cas2.confName, new CasStrategy(
+    config.passport.cas2,
+    function (profile, done) {
+      return done(null, {login: profile});
+    })
+  );
+
+  passport.use(config.passport.cas3.confName, new CasStrategy(
+    config.passport.cas3,
+    function (profile, done) {
+      return done(null, profile);
+    })
+  );
 };

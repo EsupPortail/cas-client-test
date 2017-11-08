@@ -7,14 +7,12 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const errorhandler = require('errorhandler');
+var stringify = require('json-pretty-html').default;
 
 var env = process.env.NODE_ENV || 'development';
 const config = require('./config/config')[env];
 
-console.log('Using configuration', config);
-
 require('./config/passport')(passport, config);
-
 var app = express();
 
 app.set('port', config.app.port);
@@ -34,7 +32,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
-require('./config/routes')(app, config, passport);
+require('./config/routes')(app, config, passport, stringify);
 
 app.listen(app.get('port'), function () {
   console.log('Express server listening on port ' + app.get('port'));
