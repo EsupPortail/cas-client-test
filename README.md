@@ -36,3 +36,9 @@ Note
 
 Based on :
 - [PassportJS-Authentication](https://github.com/DanialK/PassportJS-Authentication) by [Danial Khosravi](http://danialk.github.io/)
+
+
+BUG
+----
+
+Protocole is P2 in this app is in fact P1 protocole...
