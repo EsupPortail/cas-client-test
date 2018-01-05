@@ -41,4 +41,5 @@ Based on :
 BUG
 ----
 
-Protocole is P2 in this app is in fact P1 protocole...
+- Protocole is P2 in this app is in fact P1 protocole...
+- User Attributes displayed are normalized, they don't display the case

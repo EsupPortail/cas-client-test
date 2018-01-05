@@ -1,5 +1,5 @@
 const SamlStrategy = require('passport-saml').Strategy;
-const CasStrategy = require('passport-cas').Strategy;
+const CasStrategy = require('../strategy/passport-cas').Strategy;
 
 module.exports = function (passport, config) {
 
@@ -21,14 +21,14 @@ module.exports = function (passport, config) {
   passport.use(config.passport.saml1.confName, new CasStrategy(
     config.passport.saml1,
     function (profile, done) {
-      return done(null, {login: profile});
+      return done(null, profile);
     })
   );
 
   passport.use(config.passport.cas2.confName, new CasStrategy(
     config.passport.cas2,
     function (profile, done) {
-      return done(null, {login: profile});
+      return done(null, profile);
     })
   );
 

@@ -7,6 +7,7 @@ block content
 	if user !== null
 		h1 Hello, #{user.firstName}
 		div!=userHtml
+		xmp!=rawBody
 		br
 		a(href="/logout") Logout
 	else

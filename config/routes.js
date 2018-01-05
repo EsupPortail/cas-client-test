@@ -2,10 +2,13 @@ module.exports = function (app, config, passport, stringify) {
 
   app.get('/', function (req, res) {
     if (req.isAuthenticated()) {
+      var rawBody = req.user.rawBody;
+      delete req.user.rawBody;
       res.render('home',
         {
           user: req.user,
-          userHtml: stringify(req.user)
+          userHtml: stringify(req.user),
+          rawBody: rawBody
         });
     } else {
       res.render('home',
